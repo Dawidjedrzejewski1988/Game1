@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Game.Models.Message>
+
+<h1>Wysłane Wiadomości</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Do</th>
+            <th>Treść</th>
+            <th>Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in Model)
+        {
+            <tr>
+                <td>@message.Receiver.Email</td>
+                <td>@message.Content</td>
+                <td>@message.SentAt.ToString("g")</td>
+            </tr>
+        }
+    </tbody>
+</table>

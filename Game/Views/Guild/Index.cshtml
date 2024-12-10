@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Game.Models.Guild>
+
+<h1>Gildie</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Opis</th>
+            <th>Członkowie</th>
+            <th>Opcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var guild in Model)
+        {
+            <tr>
+                <td>@guild.Name</td>
+                <td>@guild.Description</td>
+                <td>@guild.Members.Count</td>
+                <td>
+                    <form method="post" action="@Url.Action("JoinGuild", "Guild", new { heroId = 1, guildId = guild.Id })">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-primary">Dołącz</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

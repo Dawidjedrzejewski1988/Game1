@@ -1,0 +1,17 @@
+﻿@model PvPChallengeViewModel
+
+<h1>Wyzwanie PvP: @Model.Hero.Name</h1>
+
+<h3>Przeciwnicy</h3>
+<ul>
+    @foreach (var opponent in Model.Opponents)
+    {
+        <li>
+            @opponent.Name - Poziom: @opponent.Level
+            <form method="post" action="@Url.Action("StartPvP", "PvP", new { heroId = Model.Hero.Id, opponentId = opponent.Id })">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-danger">Wyzwanie</button>
+            </form>
+        </li>
+    }
+</ul>

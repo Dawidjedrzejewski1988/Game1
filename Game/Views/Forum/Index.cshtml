@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Game.Models.ForumThread>
+
+@{
+    ViewData["Title"] = "Forum";
+}
+<p>
+    <a href="@Url.Action("CreateThread", "Forum")" class="btn btn-primary btn-smaller">Dodaj nowy wątek</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tytuł</th>
+            <th>Autor</th>
+            <th>Data</th>
+            <th>Odpowiedzi</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var thread in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Show", "Forum", new { id = thread.Id })">@thread.Title</a>
+                </td>
+                <td>@thread.User.Email</td>
+                <td>@thread.CreatedAt</td>
+                <td>@thread.Replies.Count()</td>
+                <td>
+                    @if (ViewContext.HttpContext.Session.GetString("UserEmail") == thread.User.Email)
+                    {
+                        <a href="@Url.Action("EditThread", "Forum", new { id = thread.Id })" class="btn btn-primary btn-smaller">Edytuj</a>
+                    }
+
+                    @if (ViewContext.HttpContext.Session.GetString("UserRole") == "Admin")
+                    {
+                        <form method="post" asp-action="DeleteThread" asp-route-id="@thread.Id" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-primary btn-smaller">Usuń</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

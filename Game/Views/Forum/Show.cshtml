@@ -1,0 +1,33 @@
+﻿@model ThreadRepliesViewModel
+
+<h1>@Model.Thread.Title</h1>
+<p>@Model.Thread.Content</p>
+<p><strong>Autor:</strong> @Model.Thread.User.Email</p>
+
+<h2>Odpowiedzi</h2>
+@if (Model.Replies.Any())
+{
+    <ul>
+        @foreach (var reply in Model.Replies)
+        {
+            <li>
+                <strong>@reply.User.Email:</strong> @reply.Content
+                <p><small>@reply.CreatedAt.ToString("g")</small></p>
+
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Brak odpowiedzi. Bądź pierwszy!</p>
+}
+
+<h3>Dodaj odpowiedź</h3>
+<form method="post" action="@Url.Action("AddReply", "Forum", new { threadId = Model.Thread.Id })">
+    @Html.AntiForgeryToken()
+    <textarea name="content" class="form-control" rows="4" required></textarea>
+    <button type="submit" class="btn btn-primary mt-2">Dodaj odpowiedź</button>
+</form>
+
+<a href="@Url.Action("Index", "Forum")" class="btn btn-secondary mt-3">Powrót</a>

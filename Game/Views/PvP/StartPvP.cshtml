@@ -1,0 +1,23 @@
+﻿@model PvPBattleViewModel
+
+<h1>Pojedynek: @Model.Hero.Name vs @Model.Opponent.Name</h1>
+
+<div>
+    <h3>@Model.Hero.Name</h3>
+    <p>Zdrowie: @Model.Hero.Health</p>
+    <p>Siła: @Model.Hero.Strength</p>
+    <p>Obrona: @Model.Hero.Defense</p>
+</div>
+
+<div>
+    <h3>@Model.Opponent.Name</h3>
+    <p>Zdrowie: @Model.Opponent.Health</p>
+    <p>Siła: @Model.Opponent.Strength</p>
+    <p>Obrona: @Model.Opponent.Defense</p>
+</div>
+
+<form method="post" action="@Url.Action("PvPAttack", "PvP", new { heroId = Model.Hero.Id, opponentId = Model.Opponent.Id })">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Atakuj</button>
+</form>
+<a href="@Url.Action("CharacterSelection", "Character")" class="btn btn-secondary">Uciekaj</a>

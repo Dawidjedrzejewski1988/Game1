@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Game.Models.Item>
+
+<div class="container">
+    <h2 class="text-center my-4">Lista Przedmiotów</h2>
+
+    <div class="my-4">
+        <a href="@Url.Action("AddItem", "Admin")" class="btn btn-success btn-smaller center-button">Dodaj Nowy Przedmiot</a>
+    </div>
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Typ</th>
+                    <th>Siła</th>
+                    <th>Zręcz..</th>
+                    <th>Int..</th>
+                    <th>Obr..</th>
+                    <th>Hp..</th>
+                    <th>Cena</th>
+                    <th>Opcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Type</td>
+                        <td>@item.BonusStrength</td>
+                        <td>@item.BonusDexterity</td>
+                        <td>@item.BonusIntelligence</td>
+                        <td>@item.BonusDefense</td>
+                        <td>@item.BonusHealth</td>
+                        <td>@item.Price</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="@Url.Action("EditItem", "Admin", new { id = item.Id })" class="btn btn-warning btn-smaller">Edytuj</a>
+                                <a href="@Url.Action("DeleteItem", "Admin", new { id = item.Id })" class="btn btn-danger btn-smaller" onclick="return confirm('Czy na pewno chcesz usunąć ten przedmiot?');">Usuń</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

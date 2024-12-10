@@ -1,0 +1,14 @@
+﻿@model Game.Models.Location
+
+<h1>@Model.Name</h1>
+<p>@Model.Description</p>
+
+<h3>Misje dostępne w tej lokacji</h3>
+<ul>
+    @foreach (var quest in Model.Quests)
+    {
+        <li>@quest.Name - @quest.Description</li>
+    }
+</ul>
+
+<a href="@Url.Action("Index", "WorldMap")" class="btn btn-secondary">Powrót do mapy</a>

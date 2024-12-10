@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Game.Models.Quest>
+
+<div class="container">
+    <h2 class="text-center my-4">Lista Questów</h2>
+
+    <div class="my-4">
+        <a href="@Url.Action("AddQuest", "Admin")" class="btn btn-success btn-smaller center-button">Dodaj Nowy Quest</a>
+    </div>
+
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Opis</th>
+                    <th>Trudność</th>
+                    <th>Doświadczenie</th>
+                    <th>Opcje</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var quest in Model)
+                {
+                    <tr>
+                        <td>@quest.Name</td>
+                        <td>@quest.Description</td>
+                        <td>@quest.Difficulty</td>
+                        <td>@quest.RewardExperience</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="@Url.Action("EditQuest", "Admin", new { id = quest.Id })" class="btn btn-warning btn-smaller">Edytuj</a>
+                                <a href="@Url.Action("DeleteQuest", "Admin", new { id = quest.Id })" class="btn btn-danger btn-smaller">Usuń</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

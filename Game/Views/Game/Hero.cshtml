@@ -1,0 +1,63 @@
+﻿@model Game.Models.Hero
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <h2 class="text-center my-4">Statystyki</h2>
+            <p>Imię: @Model.Name</p>
+            <p>Klasa: @Model.Class</p>
+            <p>Poziom: @Model.Level</p>
+            <p>Zdrowie: @Model.Health</p>
+            <p>Siła: @Model.Strength</p>
+            <p>Zręczność: @Model.Dexterity</p>
+            <p>Inteligencja: @Model.Intelligence</p>
+            <p>Obrona: @Model.Defense</p>
+            <p>Doświadczenie: @Model.Experience</p>
+            <p>Złoto: @Model.Money</p>
+        </div>
+
+        <div class="col-md-9">
+            <h5>Ekwipunek</h5>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nazwa</th>
+                        <th>Siła</th>
+                        <th>Zręczność</th>
+                        <th>Inteligencja</th>
+                        <th>Obrona</th>
+                        <th>Zdrowie</th>
+                        <th>Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@(item.BonusStrength > 0 ? item.BonusStrength.ToString() : "-")</td>
+                            <td>@(item.BonusDexterity > 0 ? item.BonusDexterity.ToString() : "-")</td>
+                            <td>@(item.BonusIntelligence > 0 ? item.BonusIntelligence.ToString() : "-")</td>
+                            <td>@(item.BonusDefense > 0 ? item.BonusDefense.ToString() : "-")</td>
+                            <td>@(item.BonusHealth > 0 ? item.BonusHealth.ToString() : "-")</td>
+                            <td>
+                                @if (!item.IsEquipped)
+                                {
+                                    <form method="post" action="@Url.Action("EquipItem", new { heroId = Model.Id, itemId = item.Id })">
+                                        <button type="submit" class="btn btn-primary btn-small">Załóż</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <form method="post" action="@Url.Action("UnequipItem", new { heroId = Model.Id, itemId = item.Id })">
+                                        <button type="submit" class="btn btn-success btn-small">Założony</button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

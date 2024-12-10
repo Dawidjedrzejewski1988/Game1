@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Game.Models.Hero>
+
+<h1>Ranking Bohaterów</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Miejsce</th>
+            <th>Imię</th>
+            <th>Poziom</th>
+            <th>Doświadczenie</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hero in Model.Select((h, index) => new { Hero = h, Rank = index + 1 }))
+        {
+            <tr>
+                <td>@hero.Rank</td>
+                <td>@hero.Hero.Name</td>
+                <td>@hero.Hero.Level</td>
+                <td>@hero.Hero.Experience</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Game.Models.Team>
+
+<h1>Drużyny</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa Drużyny</th>
+            <th>Członkowie</th>
+            <th>Opcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var team in Model)
+        {
+            <tr>
+                <td>@team.Name</td>
+                <td>@team.Members.Count</td>
+                <td>
+                    <form method="post" action="@Url.Action("JoinTeam", "Team", new { teamId = team.Id, heroId = 1 })">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-primary">Dołącz</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Stwórz nową drużynę</h3>
+<form method="post" action="@Url.Action("CreateTeam", "Team")">
+    @Html.AntiForgeryToken()
+    <input type="text" name="name" placeholder="Nazwa drużyny" required />
+    <input type="hidden" name="heroId" value="1" />
+    <button type="submit" class="btn btn-success">Stwórz</button>
+</form>

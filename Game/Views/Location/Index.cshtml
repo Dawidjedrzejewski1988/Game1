@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Game.Models.Location>
+
+<h1>Mapa Świata</h1>
+<div class="map-container">
+    @foreach (var location in Model)
+    {
+        <div class="location-marker" style="left:@location.X%; top:@location.Y%;">
+            <img src="@location.Icon" alt="@location.Name" class="location-icon" />
+            <div class="location-info">
+                <h4>@location.Name</h4>
+                <form method="post" action="@Url.Action("Travel", "WorldMap", new { heroId = 1, locationId = location.Id })">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-primary" @(location.IsAccessible ? "" : "disabled")>Podróżuj</button>
+                </form>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .map-container {
+        position: relative;
+        width: 100%;
+        height: 600px;
+        background: url('/images/world-map.jpg') no-repeat center center;
+        background-size: cover;
+    }
+    .location-marker {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    .location-icon {
+        width: 50px;
+        height: 50px;
+    }
+    .location-info {
+        margin-top: 5px;
+    }
+</style>

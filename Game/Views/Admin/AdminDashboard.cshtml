@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Panel Administratora";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div class="text-center">
+    <p>
+        <a class="btn btn-primary" href="@Url.Action("QuestList", "Admin")">Lista questów</a>
+        <a class="btn btn-primary" href="@Url.Action("ItemList", "Admin")">Lista Przedmiotów</a>
+    </p>
+</div>

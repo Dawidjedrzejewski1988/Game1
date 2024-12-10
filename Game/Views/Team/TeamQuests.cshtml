@@ -1,0 +1,25 @@
+﻿@model Game.Models.Team
+
+<h1>Misje Drużynowe: @Model.Name</h1>
+<ul>
+    @foreach (var quest in Model.TeamQuests)
+    {
+        <li>
+            @quest.Quest.Name - @if (quest.IsCompleted)
+            {
+                <span class="text-success">Zakończone</span>
+            }
+            else
+            {
+                <span class="text-danger">W trakcie</span>
+            }
+        </li>
+    }
+</ul>
+
+<h3>Rozpocznij nową misję drużynową</h3>
+<form method="post" action="@Url.Action("StartTeamQuest", "Team", new { teamId = Model.Id })">
+    @Html.AntiForgeryToken()
+    <input type="number" name="questId" placeholder="ID Misji" required />
+    <button type="submit" class="btn btn-primary">Rozpocznij</button>
+</form>

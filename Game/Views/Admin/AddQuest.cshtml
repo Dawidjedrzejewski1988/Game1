@@ -1,0 +1,39 @@
+﻿@model Game.Models.Quest
+
+<div class="container">
+    <h2 class="text-center my-4">@ViewData["Title"]</h2>
+
+    <form asp-action="AddQuest" method="post">
+        <div class="form-group">
+            <label for="Name">Nazwa</label>
+            <input type="text" class="form-control" asp-for="Name" required />
+        </div>
+
+        <div class="form-group">
+            <label for="Description">Opis</label>
+            <textarea class="form-control" asp-for="Description" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="Difficulty">Trudność</label>
+            <select class="form-control" asp-for="Difficulty" required>
+                <option value="Łatwy">Łatwy</option>
+                <option value="Średni">Średni</option>
+                <option value="Trudny">Trudny</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="RewardExperience">Doświadczenie za ukończenie</label>
+            <input type="number" class="form-control" asp-for="RewardExperience" required />
+        </div>
+
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-success">Dodaj Quest</button>
+        </div>
+    </form>
+
+    <div class="form-group text-center">
+        <a href="@Url.Action("AdminDashboard", "Admin")" class="btn btn-secondary">Wróć do Panelu Administratora</a>
+    </div>
+</div>

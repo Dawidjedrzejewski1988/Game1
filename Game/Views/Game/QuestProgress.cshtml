@@ -1,0 +1,30 @@
+﻿@model Game.Models.HeroQuest
+
+<div class="container">
+    <h2 class="text-center my-4">@Model.Quest.Name</h2>
+    <h4>@Model.Quest.Description</h4>
+
+    <div id="timer" class="my-4">
+        <p>Pozostały czas: <span id="timeRemaining"></span></p>
+    </div>
+
+    <script>
+        var timeRemaining = @ViewBag.TimeRemaining ? @ViewBag.TimeRemaining.TotalSeconds : 0;
+        var timerElement = document.getElementById("timeRemaining");
+
+        function updateTimer() {
+            if (timeRemaining > 0) {
+                var minutes = Math.floor(timeRemaining / 60);
+                var seconds = Math.floor(timeRemaining % 60);
+                timerElement.innerText = minutes + "m " + seconds + "s";
+                timeRemaining--;
+            } else {
+                timerElement.innerText = "Misja zakończona!";
+                clearInterval(timerInterval);
+            }
+        }
+
+        var timerInterval = setInterval(updateTimer, 1000);
+    </script>
+
+</div>

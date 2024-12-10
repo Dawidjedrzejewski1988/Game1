@@ -1,0 +1,140 @@
+﻿@model Game.Models.Hero
+
+<h1>Szczegóły Postaci: @Model.Name</h1>
+
+<div>
+    <h3>Statystyki</h3>
+    <p><strong>Klasa:</strong> @Model.Class</p>
+    <p><strong>Poziom:</strong> @Model.Level</p>
+    <p><strong>Doświadczenie:</strong> @Model.Experience</p>
+    <p><strong>Siła:</strong> @Model.Strength</p>
+    <p><strong>Zręczność:</strong> @Model.Dexterity</p>
+    <p><strong>Inteligencja:</strong> @Model.Intelligence</p>
+    <p><strong>Zdrowie:</strong> @Model.Health</p>
+    <p><strong>Złoto:</strong> @Model.Money</p>
+</div>
+
+<div>
+    <h3>Ekwipunek</h3>
+    @if (Model.Items.Any())
+    {
+        <ul>
+            @foreach (var item in Model.Items)
+            {
+                <li>@item.Name - Typ: @item.Type</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Ekwipunek jest pusty.</p>
+    }
+</div>
+
+<div>
+    <h3>Misje w toku</h3>
+    @if (Model.HeroQuests.Any())
+    {
+        <ul>
+            @foreach (var quest in Model.HeroQuests.Where(hq => !hq.IsCompleted).Select(hq => hq.Quest))
+            {
+                <li>@quest.Name - Trudność: @quest.Difficulty</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Brak aktywnych misji.</p>
+    }
+</div>
+
+<a href="@Url.Action("CharacterSelection", "Character")" class="btn btn-secondary">Powrót</a>
+
+@if (Model.PointsToSpend > 0)
+{
+    <h3>Masz @Model.PointsToSpend punktów do rozdania</h3>
+    <form method="post" action="@Url.Action("DistributePoints", "Character", new { id = Model.Id })">
+        @Html.AntiForgeryToken()
+        <div>
+            <label>Siła:</label>
+            <input type="number" name="StrengthPoints" min="0" value="0" />
+        </div>
+        <div>
+            <label>Zręczność:</label>
+            <input type="number" name="DexterityPoints" min="0" value="0" />
+        </div>
+        <div>
+            <label>Inteligencja:</label>
+            <input type="number" name="IntelligencePoints" min="0" value="0" />
+        </div>
+        <button type="submit" class="btn btn-primary">Rozdaj punkty</button>
+    </form>
+}
+<h3>Ekwipunek</h3>
+<ul>
+    @foreach (var item in Model.Items)
+    {
+        <li>
+            @item.Name - Typ: @item.Type - Bonus: Siła +@item.BonusStrength, Zręczność +@item.BonusDexterity
+            @if (item.IsEquipped)
+            {
+                <span>(Wyposażony)</span>
+                <form method="post" action="@Url.Action("UnequipItem", "Character", new { heroId = Model.Id, itemId = item.Id })">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-warning">Zdejmij</button>
+                </form>
+            }
+            else
+            {
+                <form method="post" action="@Url.Action("EquipItem", "Character", new { heroId = Model.Id, itemId = item.Id })">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-success">Wyposaż</button>
+                </form>
+            }
+        </li>
+    }
+</ul>
+
+@if (Model.PointsToSpend > 0)
+{
+    <h3>Masz @Model.PointsToSpend punktów do rozdania</h3>
+    <form method="post" action="@Url.Action("DistributePoints", "Character", new { id = Model.Id })">
+        @Html.AntiForgeryToken()
+        <div>
+            <label>Siła:</label>
+            <input type="number" name="strengthPoints" min="0" max="@Model.PointsToSpend" value="0" />
+        </div>
+        <div>
+            <label>Zręczność:</label>
+            <input type="number" name="dexterityPoints" min="0" max="@Model.PointsToSpend" value="0" />
+        </div>
+        <div>
+            <label>Inteligencja:</label>
+            <input type="number" name="intelligencePoints" min="0" max="@Model.PointsToSpend" value="0" />
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Rozdaj Punkty</button>
+    </form>
+}
+<h3>Ekwipunek</h3>
+<ul>
+    @foreach (var item in Model.Items)
+    {
+        <li>
+            @item.Name - Poziom ulepszenia: @item.UpgradeLevel
+            <form method="post" action="@Url.Action("UpgradeItem", "Game", new { heroId = Model.Id, itemId = item.Id })">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-info">Ulepsz</button>
+            </form>
+        </li>
+    }
+}
+@if (Model.PointsToSpend > 0)
+{
+    <h3>Zadanie dzienne</h3>
+    <form method="get" action="@Url.Action("DailyQuest", "DailyQuests", new { heroId = Model.Id })">
+        <button type="submit" class="btn btn-primary">Wykonaj zadanie dzienne</button>
+    </form>
+}
+
+
+

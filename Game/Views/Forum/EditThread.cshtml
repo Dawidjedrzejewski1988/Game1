@@ -1,0 +1,30 @@
+﻿@model Game.Models.ForumThread
+
+@{
+    ViewData["Title"] = "Edytuj wątek";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="EditThread" method="post">
+    <div class="form-group">
+        <label asp-for="Title" class="control-label">Tytuł</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Content" class="control-label">Treść</label>
+        <textarea asp-for="Content" class="form-control" rows="6"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+        <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
+    </div>
+</form>
+
+
+
+

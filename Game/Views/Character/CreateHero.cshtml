@@ -1,0 +1,15 @@
+﻿@model Game.Models.Hero
+
+<h1>Stwórz nową postać</h1>
+<form method="post" action="@Url.Action("CreateHero", "Character")">
+    @Html.AntiForgeryToken()
+    <div>
+        <label>Imię</label>
+        <input type="text" name="Name" required />
+    </div>
+    <div>
+        <label>Klasa</label>
+        <input type="text" name="Class" required />
+    </div>
+    <button type="submit" class="btn btn-success">Stwórz</button>
+</form>

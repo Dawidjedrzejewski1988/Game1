@@ -1,0 +1,19 @@
+﻿@model Game.Models.Hero
+
+<div class="container">
+    <h2 class="text-center my-4">Witaj, @Model.Name!</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            <a href="@Url.Action("Missions", "Game", new { heroId = Model.Id })" class="btn btn-primary btn-block">Misje</a>
+        </div>
+
+        <div class="col-md-4">
+            <a href="@Url.Action("Hero", "Game", new { heroId = Model.Id })" class="btn btn-secondary btn-block">Bohater</a>
+        </div>
+
+        <div class="col-md-4">
+            <a href="@Url.Action("Shop", "Game", new { heroId = Model.Id })" class="btn btn-success btn-block">Sklep</a>
+        </div>
+    </div>
+</div>

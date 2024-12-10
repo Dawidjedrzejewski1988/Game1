@@ -1,0 +1,21 @@
+﻿@model Game.Models.Hero
+
+<h1>Gratulacje! Twoja postać osiągnęła poziom @Model.Level!</h1>
+<p>Masz @Model.PointsToSpend punktów do rozdania.</p>
+
+<form method="post" action="@Url.Action("DistributePoints", "Character", new { id = Model.Id })">
+    @Html.AntiForgeryToken()
+    <div>
+        <label>Siła:</label>
+        <input type="number" name="StrengthPoints" min="0" value="0" />
+    </div>
+    <div>
+        <label>Zręczność:</label>
+        <input type="number" name="DexterityPoints" min="0" value="0" />
+    </div>
+    <div>
+        <label>Inteligencja:</label>
+        <input type="number" name="IntelligencePoints" min="0" value="0" />
+    </div>
+    <button type="submit" class="btn btn-primary">Rozdaj punkty</button>
+</form>

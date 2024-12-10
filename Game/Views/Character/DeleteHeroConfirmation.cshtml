@@ -1,0 +1,10 @@
+﻿@model Game.Models.Hero
+
+<h1>Usuń Postać: @Model.Name</h1>
+<p>Czy na pewno chcesz usunąć tę postać? Ta akcja jest nieodwracalna.</p>
+
+<form method="post" action="@Url.Action("DeleteHero", "Character", new { id = Model.Id })">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Usuń</button>
+    <a href="@Url.Action("CharacterSelection", "Character")" class="btn btn-secondary">Anuluj</a>
+</form>

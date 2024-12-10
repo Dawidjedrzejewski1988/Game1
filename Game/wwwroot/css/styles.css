@@ -1,0 +1,240 @@
+﻿h1 {
+    color: #fff;
+    font-size: 48px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center; 
+}
+
+.button-container {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    padding: 40px 20px; 
+    width: 100%;
+    max-width: 400px; 
+    margin: 0 auto; 
+
+}
+
+.button-container .btn {
+    margin-bottom: 50px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    padding: 20px 0; 
+    font-size: 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    border: 2px solid #444;
+    width: 100%; 
+    max-width: 400px;
+    box-sizing: border-box; 
+    transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease; 
+}
+
+.btn:hover {
+    background-color: #555;
+    transform: scale(1.1); 
+    border-color: #007bff; 
+}
+
+.form-container {
+    padding: 30px;
+    max-width: 400px;
+    margin: 50px auto;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.form-container h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: white;
+    font-size: 14px;
+}
+
+.form-control {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.text-danger {
+    color: #d9534f;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    font-weight: bold;
+    display: block; 
+}
+
+
+.btn-small {
+    padding: 10px 0;
+    font-size: 14px;
+    max-width: 200px;
+}
+.btn-smallsh {
+    padding: 10px 0;
+    font-size: 14px;
+    max-width: 200px;
+    max-height 15px;
+}
+
+.custom-table {
+    width: 100%;
+    margin: 20px auto;
+    text-align: left;
+    color: white;
+    border-collapse: collapse;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 15px 20px;
+}
+
+.custom-table th {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-action {
+    display: inline-block;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: 1px solid white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    justify-content: center;
+}
+
+.btn-action:hover {
+    background-color: white;
+    color: #333;
+}
+
+.btn-success {
+    border-color: #28a745;
+}
+
+.btn-warning {
+    border-color: #ffc107;
+}
+
+.btn-danger {
+    border-color: #dc3545;
+}
+
+.table th, .table td {
+    color: white;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btn-smaller {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    max-width: calc(100% - 10px);
+    box-sizing: border-box;
+}
+
+.center-button {
+    display: block;
+    margin: 0 auto;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%; 
+    border-collapse: collapse; 
+}
+
+th, td {
+    padding: 5px 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    height: 40px;
+    box-sizing: border-box;
+}
+
+.nav-link {
+    color: white; 
+}
+
+.nav-link.active {
+    border: 2px solid white;
+    color: white; 
+    background-color: transparent;
+}
+
+.nav-link:hover {
+    color: #ddd;
+}
+
+table td form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.text-center p a {
+    margin-bottom: 50px;
+}
+
+.nav-item {
+    position: relative;
+    padding-right: 10px;
+}
+
+.nav-item.border-left {
+    border-left: 1px solid #000; 
+    padding-left: 10px;
+}
+
+.nav-item:not(:last-child) {
+    margin-right: 10px;
+}
+
+.thread-container {
+    height: 500px;
+    overflow-y: auto; 
+}

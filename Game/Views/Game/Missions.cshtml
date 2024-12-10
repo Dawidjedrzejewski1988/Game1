@@ -1,0 +1,74 @@
+﻿@model MissionsViewModel
+
+<div class="container">
+    <h1>Misje dla bohatera: @Model.Hero.Name</h1>
+
+    <h3>Dostępne Misje</h3>
+    @if (Model.AvailableQuests.Any())
+
+    {
+        <ul>
+            @foreach (var quest in Model.AvailableQuests)
+
+            {
+                <li>
+                    @quest.Name - @quest.Difficulty
+                    <form method="post" action="@Url.Action("AssignQuest", "Game", new { heroId = Model.Hero.Id, questId = quest.Id })">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-primary">Przypisz</button>
+                    </form>
+                </li>
+            }
+        </ul>
+    }
+
+    else
+
+    {
+        <p>Brak dostępnych misji.</p>
+    }
+
+    <h3>Misje w toku</h3>
+    @if (Model.AssignedQuests.Any())
+
+    {
+        <ul>
+            @foreach (var quest in Model.AssignedQuests)
+
+            {
+                <li>@quest.Name</li>
+            }
+        </ul>
+    }
+
+    else
+
+    {
+        <p>Nie masz żadnych aktywnych misji.</p>
+    }
+    <h3>Misje w toku</h3>
+    @if (Model.AssignedQuests.Any())
+
+    {
+        <ul>
+            @foreach (var quest in Model.AssignedQuests)
+
+            {
+                <li>
+                    @quest.Name - Trudność: @quest.Difficulty
+                    <form method="post" action="@Url.Action("CompleteQuest", "Game", new { heroId = Model.Hero.Id, questId = quest.Id })">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-success">Zakończ Misję</button>
+                    </form>
+                </li>
+            }
+        </ul>
+    }
+
+    else
+
+    {
+        <p>Brak aktywnych misji.</p>
+    }
+
+</div>

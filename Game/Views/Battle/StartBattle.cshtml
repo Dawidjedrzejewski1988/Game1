@@ -1,0 +1,24 @@
+﻿@model BattleViewModel
+
+<h1>Walka: @Model.Hero.Name vs @Model.Enemy.Name</h1>
+
+<div>
+    <h3>Bohater</h3>
+    <p>Zdrowie: @Model.Hero.Health</p>
+    <p>Siła: @Model.Hero.Strength</p>
+    <p>Obrona: @Model.Hero.Defense</p>
+</div>
+
+<div>
+    <h3>Wróg</h3>
+    <p>Zdrowie: @Model.Enemy.Health</p>
+    <p>Siła: @Model.Enemy.Strength</p>
+    <p>Obrona: @Model.Enemy.Defense</p>
+</div>
+
+<form method="post" action="@Url.Action("Attack", "Battle", new { heroId = Model.Hero.Id, enemyId = Model.Enemy.Id })">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Atakuj</button>
+</form>
+
+<a href="@Url.Action("CharacterSelection", "Character")" class="btn btn-secondary">Uciekaj</a>

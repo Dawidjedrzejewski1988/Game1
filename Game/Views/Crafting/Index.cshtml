@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Game.Models.CraftingRecipe>
+
+<h1>Crafting</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa Przepisu</th>
+            <th>Składniki</th>
+            <th>Wynik</th>
+            <th>Opcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var recipe in Model)
+        {
+            <tr>
+                <td>@recipe.Name</td>
+                <td>
+                    <ul>
+                        @foreach (var ingredient in recipe.Ingredients)
+                        {
+                            <li>@ingredient.Item.Name x@ingredient.Quantity</li>
+                        }
+                    </ul>
+                </td>
+                <td>@recipe.ResultItem.Name</td>
+                <td>
+                    <form method="post" action="@Url.Action("CraftItem", "Crafting", new { recipeId = recipe.Id, heroId = 1 })">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-success">Craftuj</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

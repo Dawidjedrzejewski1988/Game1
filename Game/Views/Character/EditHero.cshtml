@@ -1,0 +1,11 @@
+﻿@model Game.Models.Hero
+
+<h1>Edytuj Postać</h1>
+<form method="post" action="@Url.Action("EditHero", "Character", new { id = Model.Id })">
+    @Html.AntiForgeryToken()
+    <div>
+        <label>Imię</label>
+        <input type="text" name="Name" value="@Model.Name" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Zapisz</button>
+</form>

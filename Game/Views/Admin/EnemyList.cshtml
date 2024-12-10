@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Game.Models.Enemy>
+
+<h1>Lista Wrogów</h1>
+<a href="@Url.Action("AddEnemy", "Admin")" class="btn btn-primary">Dodaj Wroga</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Zdrowie</th>
+            <th>Siła</th>
+            <th>Obrona</th>
+            <th>Doświadczenie</th>
+            <th>Złoto</th>
+            <th>Opcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var enemy in Model)
+        {
+            <tr>
+                <td>@enemy.Name</td>
+                <td>@enemy.Health</td>
+                <td>@enemy.Strength</td>
+                <td>@enemy.Defense</td>
+                <td>@enemy.RewardExperience</td>
+                <td>@enemy.RewardGold</td>
+                <td>
+                    <a href="@Url.Action("EditEnemy", "Admin", new { id = enemy.Id })" class="btn btn-warning">Edytuj</a>
+                    <form method="post" action="@Url.Action("DeleteEnemy", "Admin", new { id = enemy.Id })" style="display:inline;">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Usuń</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

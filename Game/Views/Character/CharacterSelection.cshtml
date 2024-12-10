@@ -1,0 +1,28 @@
+﻿@model List<Game.Models.Hero>
+
+<h1>Twoje Postacie</h1>
+@if (Model.Any())
+
+{
+    <ul>
+        @foreach (var hero in Model)
+
+        {
+            <li>
+                <strong>@hero.Name</strong> - Klasa: @hero.Class - Level: @hero.Level
+                <form method="post" action="@Url.Action("DeleteHero", "Character", new { id = hero.Id })">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger">Usuń</button>
+                </form>
+                <a href="@Url.Action("EditHero", "Character", new { id = hero.Id })" class="btn btn-warning">Edytuj</a>
+            </li>
+        }
+    </ul>
+}
+
+else
+
+{
+    <p>Nie masz żadnych postaci. Stwórz nową!</p>
+}
+<a href="@Url.Action("CreateHero", "Character")" class="btn btn-primary">Stwórz Postać</a>

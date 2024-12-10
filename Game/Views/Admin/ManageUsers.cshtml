@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Game.Models.User>
+
+<h1>Zarządzanie Użytkownikami</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Rola</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.Role</td>
+                <td>
+                    <form method="post" action="@Url.Action("DeleteUser", "Admin", new { id = user.Id })">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Usuń</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,56 @@
+﻿@model Game.Models.Item
+
+<div class="container">
+    <h2 class="text-center my-4">Edytuj Przedmiot</h2>
+
+    <div class="form-container">
+        <form asp-action="EditItem" method="post">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label for="Name">Nazwa przedmiotu</label>
+                <input type="text" class="form-control" asp-for="Name" required />
+            </div>
+
+            <div class="form-group">
+                <label for="Type">Typ przedmiotu</label>
+                <input type="text" class="form-control" asp-for="Type" required />
+            </div>
+
+            <div class="form-group">
+                <label for="BonusStrength">Bonus do Siły</label>
+                <input type="number" class="form-control" asp-for="BonusStrength" />
+            </div>
+
+            <div class="form-group">
+                <label for="BonusDexterity">Bonus do Zręczności</label>
+                <input type="number" class="form-control" asp-for="BonusDexterity" />
+            </div>
+
+            <div class="form-group">
+                <label for="BonusIntelligence">Bonus do Inteligencji</label>
+                <input type="number" class="form-control" asp-for="BonusIntelligence" />
+            </div>
+
+            <div class="form-group">
+                <label for="BonusDefense">Bonus do Obrony</label>
+                <input type="number" class="form-control" asp-for="BonusDefense" />
+            </div>
+
+            <div class="form-group">
+                <label for="BonusHealth">Bonus do Zdrowia</label>
+                <input type="number" class="form-control" asp-for="BonusHealth" />
+            </div>
+
+            <div class="form-group">
+                <label for="Price">Cena</label>
+                <input type="number" class="form-control" asp-for="Price" required />
+            </div>
+
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-success">Zapisz zmiany</button>
+                <a href="@Url.Action("ItemList", "Admin")" class="btn btn-secondary">Anuluj</a>
+            </div>
+        </form>
+    </div>
+</div>

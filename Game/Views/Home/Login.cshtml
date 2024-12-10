@@ -1,0 +1,45 @@
+﻿@model LoginViewModel
+
+<div class="form-container">
+    <h2>Logowanie</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <form asp-action="Login" method="post">
+        <div class="form-group">
+            <label for="Email">Email:</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Password">Hasło:</label>
+            <input asp-for="Password" class="form-control" type="password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div style="text-align: center;">
+            <button type="submit" class="btn">Zaloguj</button>
+        </div>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+    </form>
+
+    <div class="text-center mt-3">
+        <p>Nie masz konta? <a class="btn btn-primary btn-smaller" asp-controller="Account" asp-action="Register">Zarejestruj się</a></p>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
